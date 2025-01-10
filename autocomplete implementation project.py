@@ -27,3 +27,12 @@ class Trie:
         for char, child in node.children.items():
             results.extend(self._find_words_from(child, prefix + char))
         return results
+    
+    # Adds a word to the trie
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_of_word = True
