@@ -28,11 +28,11 @@ class Trie:
             results.extend(self._find_words_from(child, prefix + char))
         return results
     
-    # Adds a word to the trie
-    def insert(self, word):
+    # Finds all words in the trie that start with a given prefix
+    def starts_with(self, prefix):
         node = self.root
-        for char in word:
+        for char in prefix:
             if char not in node.children:
-                node.children[char] = TrieNode()
+                return []
             node = node.children[char]
-        node.is_end_of_word = True
+        return self._find_words_from(node, prefix)
