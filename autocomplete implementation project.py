@@ -19,6 +19,14 @@ class Trie:
             node = node.children[char]
         return node.is_end_of_word
 
+    def insert(self, word):
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.is_end_of_word = True
+
     # Recursively collects all words starting from the given trie node (Helper)
     def _find_words_from(self, node, prefix):
         results = []
